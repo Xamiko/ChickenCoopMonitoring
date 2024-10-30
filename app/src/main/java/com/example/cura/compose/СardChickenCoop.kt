@@ -1,5 +1,3 @@
-package com.example.cura.compose
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -17,18 +15,18 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.cura.R
 import com.example.cura.data.ChickenCoop
-import com.example.cura.data.primaryCoop
-
-
 
 @Composable
 fun СardChickenCoop(
-    primaryCoop: ChickenCoop,
     modifier: Modifier = Modifier,
+    primaryCoop: ChickenCoop,
     isSelected: Boolean,
     onClick: () -> Unit
 ) {
@@ -38,8 +36,7 @@ fun СardChickenCoop(
             .padding(16.dp)
             .fillMaxWidth()
             .clickable(onClick = onClick)
-            .background(backgroundColor), // Добавлено выделение
-
+            .background(backgroundColor), 
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
@@ -47,7 +44,7 @@ fun СardChickenCoop(
             contentDescription = primaryCoop.nickname,
             contentScale = ContentScale.Crop,
             modifier = Modifier.run {
-                clip(RoundedCornerShape(20.dp)) // Округляем изображение
+                clip(RoundedCornerShape(20.dp))
                     .fillMaxWidth()
                     .height(200.dp)
             }
@@ -70,5 +67,18 @@ fun СardChickenCoop(
 }
 
 
+@Preview(showBackground = true)
+@Composable
+fun CardChickenCoopPreview() {
+    val sampleCoop = ChickenCoop(
+        nickname = "Coop 1",
+        description = "A cozy chicken coop.",
+        image = R.drawable.kuryatnik_iz_brusa_foto 
+    )
 
-
+    СardChickenCoop(
+        primaryCoop = sampleCoop,
+        isSelected = false,
+        onClick = {}
+    )
+}

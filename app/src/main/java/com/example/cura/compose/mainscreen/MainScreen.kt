@@ -24,10 +24,10 @@ import com.example.cura.data.abioticData
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MonitorScreen(navController: NavController) {
+fun MainScreen(navController: NavController) {
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Мониторинг") })
+            TopAppBar(title = { Text("Your chicken coops") })
         }
     ) {
             padding ->
@@ -38,10 +38,10 @@ fun MonitorScreen(navController: NavController) {
                 .padding(10.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text("Temperature: 25°C", fontSize = 24.sp, color = Color.Black)
-            Spacer(modifier = Modifier.height(8.dp))
-            Text("Humidity: 60%", fontSize = 24.sp, color = Color.Black)
-            Spacer(modifier = Modifier.height(24.dp))
+
+           CardChickenCoopList()
+
+
 
 
             Button(

@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.cura.data.primaryCoop
+import СardChickenCoop
 
 
 @Composable
@@ -22,7 +23,8 @@ fun CardChickenCoopList() {
             СardChickenCoop(
                 primaryCoop = chickenCoop,
                 isSelected = index == selectedСhickenCoopIndex.value,
-                onClick = { selectedСhickenCoopIndex.value = index }
+                onClick = { selectedСhickenCoopIndex.value = index
+               }
             )
             Spacer(modifier = Modifier.height(16.dp))
         }

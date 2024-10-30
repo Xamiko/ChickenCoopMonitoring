@@ -26,7 +26,7 @@ import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(navController: NavController) {
+fun InformationScreen(navController: NavController) {
     var temperature by remember { mutableIntStateOf(25) }
     var humidity by remember { mutableIntStateOf(60) }
     Scaffold(
