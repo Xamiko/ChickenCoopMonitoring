@@ -11,20 +11,23 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.cura.data.primaryCoop
 import СardChickenCoop
 
 
 @Composable
-fun CardChickenCoopList() {
+fun CardChickenCoopList(navigateToInfo: (Int) -> Unit) {
     val selectedСhickenCoopIndex = remember { mutableStateOf(-1) }
     LazyColumn {
         itemsIndexed(primaryCoop) { index, chickenCoop ->
             СardChickenCoop(
                 primaryCoop = chickenCoop,
                 isSelected = index == selectedСhickenCoopIndex.value,
-                onClick = { selectedСhickenCoopIndex.value = index
-               }
+                onClick = {
+                    selectedСhickenCoopIndex.value = index
+                    navigateToInfo(index) // Используем лямбда-функцию для навигации
+                }
             )
             Spacer(modifier = Modifier.height(16.dp))
         }

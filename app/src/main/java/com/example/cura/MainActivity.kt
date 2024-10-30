@@ -10,7 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.cura.compose.infoscreen.InformationScreen
 
-import com.example.cura.compose.mainscreen.MainScreen
+import com.example.cura.compose.homescreen.HomeScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,17 +25,25 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
-
 @Composable
 fun NavigationApp() {
     val navController = rememberNavController()
     NavHost(navController, startDestination = "main") {
-        composable("main") { MainScreen(navController) }
-        composable("info") { InformationScreen(navController) }
+        composable("main") {
+            HomeScreen(
+                navigateToInfo = { index -> navController.navigate("info/$index") }
+            )
+        }
+
+        composable("info/{index}") { backStackEntry ->
+            val index = backStackEntry.arguments?.getString("index")?.toInt()
+            InformationScreen(
+                navigationToMain = { navController.popBackStack() }, // навигация на главную
+                index = index
+            )
+        }
     }
 }
-
 
 
 
