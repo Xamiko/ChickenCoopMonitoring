@@ -8,15 +8,16 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.cura.compose.infoscreen.InformationScreen
 import com.example.cura.compose.mainscreen.MonitorScreen
-import com.example.cura.compose.infoscreen.SettingsScreen
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         setContent {
-            PoultryApp()
+            NavigationApp()
         }
 
 
@@ -27,15 +28,23 @@ class MainActivity : ComponentActivity() {
 
 
 @Composable
-fun PoultryApp() {
+fun NavigationApp() {
     val navController = rememberNavController()
-    NavHost(navController, startDestination = "monitor") {
-        composable("monitor") { MonitorScreen(navController) }
-        composable("settings") { SettingsScreen(navController) }
+    NavHost(navController, startDestination = "main") {
+        composable("main") {
+            MonitorScreen(
+                navigateToInfo = { index -> navController.navigate("info/$index") }
+            )
+        }
+
+        composable("info/{index}") { backStackEntry ->
+            val index = backStackEntry.arguments?.getString("index")?.toInt()
+            InformationScreen(
+                navigationToMain = { navController.popBackStack() },
+                index = index
+            )
+        }
     }
 }
-
-
-
 
 

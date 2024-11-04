@@ -15,14 +15,17 @@ import com.example.cura.data.primaryCoop
 
 
 @Composable
-fun CardChickenCoopList() {
+fun CardChickenCoopList(navigateToInfo: (Int) -> Unit)  {
     val selectedСhickenCoopIndex = remember { mutableStateOf(-1) }
     LazyColumn {
         itemsIndexed(primaryCoop) { index, chickenCoop ->
             СardChickenCoop(
                 primaryCoop = chickenCoop,
                 isSelected = index == selectedСhickenCoopIndex.value,
-                onClick = { selectedСhickenCoopIndex.value = index }
+            onClick = {
+                    selectedСhickenCoopIndex.value = index
+                    navigateToInfo(index)
+            }
             )
             Spacer(modifier = Modifier.height(16.dp))
         }

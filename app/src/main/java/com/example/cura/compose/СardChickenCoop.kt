@@ -38,7 +38,7 @@ fun СardChickenCoop(
             .padding(16.dp)
             .fillMaxWidth()
             .clickable(onClick = onClick)
-            .background(backgroundColor), // Добавлено выделение
+            .background(backgroundColor),
 
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -47,7 +47,7 @@ fun СardChickenCoop(
             contentDescription = primaryCoop.nickname,
             contentScale = ContentScale.Crop,
             modifier = Modifier.run {
-                clip(RoundedCornerShape(20.dp)) // Округляем изображение
+                clip(RoundedCornerShape(20.dp))
                     .fillMaxWidth()
                     .height(200.dp)
             }

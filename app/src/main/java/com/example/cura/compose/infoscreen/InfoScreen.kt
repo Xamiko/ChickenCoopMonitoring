@@ -26,7 +26,8 @@ import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(navController: NavController) {
+fun InformationScreen( navigationToMain: () -> Unit,
+                       index: Int?) {
     var temperature by remember { mutableIntStateOf(25) }
     var humidity by remember { mutableIntStateOf(60) }
     Scaffold(
@@ -66,7 +67,7 @@ fun SettingsScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(24.dp))
 
             Button(
-                onClick = { navController.navigate("monitor") },
+                onClick = { navigationToMain() },
                 modifier = Modifier.fillMaxWidth(0.8f)
             ) {
                 Text("Save and Return")
